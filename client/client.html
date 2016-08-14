@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>PeerJS sample</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+<script>
+  // ベンダプレフィックスの差を吸収する
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+  var peer = new Peer({key: '23146651-8c57-4230-abd6-367799f6e270'}); // PeerJSのサイトで取得したAPI keyを設定
+
+peer.on('open', function(id){
+    console.log(id);
+  });
+
+  var myStream;
+  $(function(){
+    navigator.getUserMedia({audio: true, video: true}, function(stream){
+      myStream = stream;
+      $('#video').prop('src', URL.createObjectURL(stream));
+    }, function(){});
+  });
+
+  </script>
+
+</head>
+
+<body>
+  <video id="video" autoplay muted></video>
+  <video id="others-video" autoplay></video>
+</body>
+</html>
+
+<script>
+function callTo(peerId){
+var call = peer.call(peerId, myStream);
+  <pre><code>call.on('stream', function(othersStream){
+  $('#others-video').prop('src', URL.createObjectURL(othersStream));});
+  </code></pre>
+}
+</script>
