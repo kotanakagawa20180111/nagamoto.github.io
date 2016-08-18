@@ -11,11 +11,6 @@
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
   var myStream;
-  var peer = new Peer({key: '23146651-8c57-4230-abd6-367799f6e270'});
-
-  var setOthersStream = function(stream){
-    $('#others-video').prop('src', URL.createObjectURL(stream));
-  };
 
   var setMyStream = function(stream){
     myStream = stream;
@@ -39,24 +34,21 @@
     $('#video17').prop('src', URL.createObjectURL(stream));
     $('#video18').prop('src', URL.createObjectURL(stream));
     $('#video19').prop('src', URL.createObjectURL(stream));
+    $('#video20').prop('src', URL.createObjectURL(stream));
+    $('#video21').prop('src', URL.createObjectURL(stream));
+    $('#video22').prop('src', URL.createObjectURL(stream));
+    $('#video23').prop('src', URL.createObjectURL(stream));
+    $('#video24').prop('src', URL.createObjectURL(stream));
+    $('#video25').prop('src', URL.createObjectURL(stream));
+    $('#video26').prop('src', URL.createObjectURL(stream));
+    $('#video27').prop('src', URL.createObjectURL(stream));
+    $('#video28').prop('src', URL.createObjectURL(stream));
+    $('#video29').prop('src', URL.createObjectURL(stream));
   };
 
-  peer.on('open', function(id){
-    $('#peer-id').text(id);
-  });
-
-  peer.on('call', function(call){
-    call.answer(myStream);
-    call.on('stream', setOthersStream);
-  });
 
   $(function(){
     navigator.getUserMedia({audio: true, video: true}, setMyStream, function(){});
-
-    $('#call').on('click', function(){
-      var call = peer.call($('#others-peer-id').val(), myStream);
-      call.on('stream', setOthersStream);
-    });
   });
 
   peer.on('error', function(e){
@@ -66,10 +58,7 @@
 </head>
 
 <body>
-  <p>あなたのID : <span id="peer-id"></span></p>
-  <div id="dial">
-    <input type="text" id="others-peer-id" placeholder="相手のIDを入力" /><button id="call">コール</button>
-  </div>
+  <p>ナルシスト大歓喜</p>
 <center>
   <video id="video" autoplay muted></video>
   <video id="video1" autoplay muted></video>
@@ -91,8 +80,16 @@
   <video id="video17" autoplay muted></video>
   <video id="video18" autoplay muted></video>
   <video id="video19" autoplay muted></video>
-  <br>
-  <video id="others-video" autoplay width="100%"></video>
+  <video id="video20" autoplay muted></video>
+  <video id="video21" autoplay muted></video>
+  <video id="video22" autoplay muted></video>
+  <video id="video23" autoplay muted></video>
+  <video id="video24" autoplay muted></video>
+  <video id="video25" autoplay muted></video>
+  <video id="video26" autoplay muted></video>
+  <video id="video27" autoplay muted></video>
+  <video id="video28" autoplay muted></video>
+  <video id="video29" autoplay muted></video>
 </center>
 
 </body>
